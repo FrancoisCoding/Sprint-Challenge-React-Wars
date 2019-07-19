@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./Card";
+import Cards from "./Cards";
 
 export default class Objects extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class Objects extends Component {
     return (
       <div>
         {this.props.data.results.map(person => (
-          <Card data={person} />
+          <Cards key={person.name} data={person} />
         ))}
       </div>
     );
