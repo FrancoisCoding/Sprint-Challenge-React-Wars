@@ -1,26 +1,20 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import People from "./components/People";
 
-export default class Data extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-  componentDidMount() {
+function Data() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
     axios.get(`https://swapi.co/api/people/`).then(response => {
-      this.setState({
-        data: response.data
-      });
+      setData(response.data);
     });
-  }
-  render() {
-    return (
-      <>
-        <People data={this.state.data} />
-      </>
-    );
-  }
+  }, []);
+  return (
+    <>
+      <People data={data} />
+    </>
+  );
 }
+
+export default Data;
